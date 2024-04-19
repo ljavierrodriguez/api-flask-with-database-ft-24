@@ -1,29 +1,11 @@
 from flask import Flask, request, jsonify
-#from flask_sqlalchemy import SQLAlchemy
 from models import db, Task
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
-#app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///database.db"
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:root@localhost:3306/dbft24"
-#db = SQLAlchemy(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///database.db"
+#app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:root@localhost:3306/dbft24"
 db.init_app(app)
-
-"""
-class Task(db.Model):
-    __tablename__ = 'todos'
-    id = db.Column(db.Integer, primary_key=True)
-    description = db.Column(db.String(255), nullable=False)
-    done = db.Column(db.Boolean, default=False)
-
-    def serialize(self):
-        return {
-            "id": self.id,
-            "description": self.description,
-            "done": self.done
-        }
-"""
-
 
 
 @app.route('/todos', methods=['GET'])
